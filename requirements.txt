@@ -1,7 +1,10 @@
 mlflow
 fastapi
 uvicorn
-scikit-learn==1.4.2
+scikit-learn
 pandas
-evidently==0.4.16
+evidently>=0.4.0,<0.5.0
 pyarrow
+joblib
+pydantic
+numpy<2.0
