@@ -1,0 +1,6 @@
+artifact_location: file:///E:/Master/SM2/ml/tp8.2/mlruns/829058240263888669
+creation_time: 1777972350210
+experiment_id: '829058240263888669'
+last_update_time: 1777972350210
+lifecycle_stage: active
+name: hr_churn_experiment

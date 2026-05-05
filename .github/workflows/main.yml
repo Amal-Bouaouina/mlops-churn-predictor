@@ -1,0 +1,25 @@
+name: MLOps Pipeline
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install -r requirements.txt
+      - name: Train model
+        run: python train.py
+      - name: Start API & test
+        run: |
+          uvicorn main:app --host 0.0.0.0 --port 8000 &
+          sleep 5
+          curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d '{"satisfaction":0.5,"last_evaluation":0.5,"projects":3,"monthly_hours":200,"tenure":3,"work_accident":0,"promoted_last_5years":0,"salary_level":2}'
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker build -t ml-churn-api .

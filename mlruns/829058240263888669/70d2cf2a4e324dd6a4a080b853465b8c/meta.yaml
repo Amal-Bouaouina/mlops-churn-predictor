@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Master/SM2/ml/tp8.2/mlruns/829058240263888669/70d2cf2a4e324dd6a4a080b853465b8c/artifacts
+end_time: 1777972359443
+entry_point_name: ''
+experiment_id: '829058240263888669'
+lifecycle_stage: active
+run_id: 70d2cf2a4e324dd6a4a080b853465b8c
+run_name: enchanting-trout-351
+run_uuid: 70d2cf2a4e324dd6a4a080b853465b8c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777972351416
+status: 3
+tags: []
+user_id: MSI
