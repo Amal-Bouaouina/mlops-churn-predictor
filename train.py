@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 import json
 
 from mlflow.models.signature import infer_signature
-
+mlflow.set_tracking_uri("file:./mlruns")
 # =========================
 # 1. Chargement data
 # =========================

@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Master/SM2/ml/tp8.2/mlruns/829058240263888669/7cee31abcba84bce873a4c96c8b5b361/artifacts
+end_time: 1777975262747
+entry_point_name: ''
+experiment_id: '829058240263888669'
+lifecycle_stage: active
+run_id: 7cee31abcba84bce873a4c96c8b5b361
+run_name: peaceful-horse-671
+run_uuid: 7cee31abcba84bce873a4c96c8b5b361
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777975258374
+status: 3
+tags: []
+user_id: MSI
