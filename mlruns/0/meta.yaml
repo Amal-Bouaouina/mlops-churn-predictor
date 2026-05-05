@@ -1,6 +1,6 @@
-artifact_location: file:///E:/Master/SM2/ml/tp8.2/mlruns/0
-creation_time: 1777972350184
+artifact_location: file:E:/Master/SM2/ml/tp8.2/mlruns/0
+creation_time: 1777975605815
 experiment_id: '0'
-last_update_time: 1777972350184
+last_update_time: 1777975605815
 lifecycle_stage: active
 name: Default

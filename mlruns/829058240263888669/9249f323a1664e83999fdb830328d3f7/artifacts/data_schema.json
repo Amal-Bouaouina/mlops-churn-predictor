@@ -1,1 +1,0 @@
-{"columns": ["satisfaction", "last_evaluation", "projects", "monthly_hours", "tenure", "work_accident", "promoted_last_5years", "salary_level"], "dtypes": {"satisfaction": "float64", "last_evaluation": "float64", "projects": "int64", "monthly_hours": "int64", "tenure": "int64", "work_accident": "int64", "promoted_last_5years": "int64", "salary_level": "int64"}}

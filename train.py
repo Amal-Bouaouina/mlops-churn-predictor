@@ -5,9 +5,14 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, roc_auc_score
 import json
-
+import os
 from mlflow.models.signature import infer_signature
-mlflow.set_tracking_uri("file:./mlruns")
+
+# =========================
+# IMPORTANT: Forcer le chemin MLflow en local
+# =========================
+mlflow.set_tracking_uri("./mlruns")  # Changé: "file:./mlruns" -> "./mlruns"
+
 # =========================
 # 1. Chargement data
 # =========================
@@ -42,7 +47,14 @@ acc = accuracy_score(y_test, y_pred)
 auc = roc_auc_score(y_test, y_proba)
 
 # =========================
-# 6. MLflow setup
+# 6. Sauvegarde locale du modèle (pour l'API)
+# =========================
+import joblib
+joblib.dump(model, "model.joblib")
+print("✓ Modèle sauvegardé localement dans model.joblib")
+
+# =========================
+# 7. MLflow setup
 # =========================
 mlflow.set_experiment("hr_churn_experiment")
 
@@ -56,25 +68,19 @@ with mlflow.start_run():
     mlflow.log_metric("accuracy", acc)
     mlflow.log_metric("auc", auc)
 
-    # =========================
-    # 7. Signature (IMPORTANT FIX)
-    # =========================
+    # Signature
     signature = infer_signature(X_train, model.predict(X_train))
     input_example = X_train.head(1)
 
-    # =========================
-    # 8. Log model (FIXED)
-    # =========================
+    # Log model (corrigé)
     mlflow.sklearn.log_model(
-        model,
-        "model",
+        sk_model=model,  # Changé: utiliser sk_model au lieu du premier paramètre
+        artifact_path="model",  # Changé: utiliser artifact_path
         signature=signature,
         input_example=input_example
     )
 
-    # =========================
-    # 9. Schema (monitoring)
-    # =========================
+    # Schema (monitoring)
     schema = {
         "columns": list(X.columns),
         "dtypes": {col: str(X[col].dtype) for col in X.columns}
@@ -85,14 +91,13 @@ with mlflow.start_run():
 
     mlflow.log_artifact("data_schema.json")
 
-    # =========================
-    # 10. Reference data (drift)
-    # =========================
+    # Reference data (drift)
     df.to_csv("reference_data.csv", index=False)
     mlflow.log_artifact("reference_data.csv")
 
 # =========================
-# 11. Output
+# 8. Output
 # =========================
 print(f"Accuracy: {acc:.2f}, AUC: {auc:.2f}")
-print("Modèle loggué dans MLflow avec signature ✔")
+print("✓ Modèle loggué dans MLflow avec signature")
+print("✓ Modèle sauvegardé localement pour l'API")
