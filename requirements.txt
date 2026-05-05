@@ -3,5 +3,5 @@ fastapi
 uvicorn
 scikit-learn
 pandas
-evidently
+evidently>=2.0.0
 pyarrow
